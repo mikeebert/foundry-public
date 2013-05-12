@@ -1,4 +1,11 @@
-An apprenticeship tracking app.
+An apprenticeship tracking app built during my apprenticeship at [8th Light](http://www.8thlight.com).
 
-**6/19/12**
-Current specs and cucumber tests pass using an in memory datastore object
+It was an exercise in building with:
+- TDD
+- Sinatra
+- Warden (authentication used by Devise)
+- The Repository pattern to switch between:
+-- In-Memory objects for testing and development
+-- DataMapper and PosgreSQL for development and production
+- Travis CI
+
