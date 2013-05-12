@@ -1,0 +1,4 @@
+An apprenticeship tracking app.
+
+**6/19/12**
+Current specs and cucumber tests pass using an in memory datastore object

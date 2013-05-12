@@ -1,0 +1,51 @@
+<div id="apprenticeship-header">
+  <strong>Apprentice</strong>: <%= @apprenticeship.apprentice.name %>
+  <strong>Mentor</strong>: <%= @apprenticeship.mentor.name %> 
+  <span class="dates">
+    <%= @apprenticeship.start_date.strftime("%B %d, %Y") %> - <%= @apprenticeship.end_date.strftime("%B %d, %Y") %>
+  </span>
+</div>
+
+<div id="clear"></div>
+
+<div id="week_list">
+  <h4>Weeks</h4>
+   <ul class="current-weeks">
+    <% @apprenticeship.current_and_future_weeks.each do |number, date| %>
+    <li><a href="/apprenticeships/<%= @apprenticeship.id %>/weeks/<%= number %>">Week <%=number  %> - <%= date.strftime("%m/%d/%y")%></a></li>
+    <% end %>
+  </ul>
+  <hr>
+  <ul class="past-weeks">
+    <% @apprenticeship.past_weeks.each do |number, date| %>
+    <li><a href="/apprenticeships/<%= @apprenticeship.id %>/weeks/<%= number %>">Week <%=number  %> - <%= date.strftime("%m/%d/%y")%></a></li>
+    <% end %>
+  </ul>
+</div>
+
+<div id="general_task_list">
+  <h4>General Tasks</h4>
+  <a href="/apprenticeships/<%= @apprenticeship.id %>/weeks/0/tasks/new">Add General Task</a>
+  <table>
+    <tr>
+      <th class="task-title-head">Title</th>      
+      <th class="task-tag-head">Tags</th>
+      <th class="task-points-head">Points</th>
+    </tr>
+    <% @general_tasks.each do |task| %>
+      <tr>
+        <td><a href="/apprenticeships/<%= @apprenticeship.id %>/tasks/<%= task.id %>/edit"><%= task.title  %></a></td>
+        <td class="tag">
+          <% task.display_tag_names.each do |tag| %>
+            <% if tag == task.display_tag_names.last %>
+              <%= tag %>
+            <% else %>
+              <%= tag %> | 
+            <% end %>
+          <% end %>
+        </td>
+        <td><%= task.points %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>

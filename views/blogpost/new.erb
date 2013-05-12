@@ -1,0 +1,26 @@
+<h3>New Blogpost for <%= @apprenticeship.apprentice.name %> on Week <%= @week %></h3>
+
+<% if @errors %>
+<div id="errors">
+    <% @errors.each do |error| %>
+       <p><%= error %></p>
+    <% end %>
+</div>
+<% end %>
+
+<form method="post" action="/blogpost">
+  <input type="hidden" name="apprenticeship_id" value="<%= @apprenticeship.id %>">
+  <input type="hidden" name="week" value="<%= @week %>">
+ 
+  <p>
+    <label for="title">Title:</label>
+    <input type="text" name="title" size="75" value="<%= @post.title %>" required>
+  </p>
+
+  <p>
+    <label for="url">Web Address</label>
+    <input type="url" name="url" size="75" value="<%= @post.url %>" placeholder="http://www.example.com" required >
+  </p>
+
+  <button type="submit">Submit</button>
+</form>

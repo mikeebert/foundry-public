@@ -1,0 +1,9 @@
+<p>You are not authorized to view that information.</p>
+
+<p>
+  <% if current_user %>
+    <a href="/users/<%= current_user.id %>">My Page</a>
+  <% else %>
+    Please <a href="/login">login</a> or <a href="/users/new">create an account</a>.
+  <% end %>
+</p>

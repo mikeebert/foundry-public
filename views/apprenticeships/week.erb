@@ -1,0 +1,109 @@
+<div id="feedback_module">
+  <p>
+    <strong>Feedback</strong>
+    <span class="feedback_links">
+      <a href="/apprenticeships/<%= @apprenticeship.id %>/weeks/<%= @week %>/feedback/new">Leave feedback</a> | 
+      <a href="/apprenticeships/<%= @apprenticeship.id %>/weeks/<%= @week %>/feedback">View feedback</a>
+    </span>
+  </p>
+  <% @apprenticeship.feedback_for_week(@week).each do |feedback| %>
+    <li>
+      <em><%= feedback.created_at.strftime("%b %d") %></em>:
+      <%= feedback.author.name %>'s rating: <a href="/apprenticeships/<%= @apprenticeship.id %>/weeks/<%= @week %>/feedback"><strong><%= feedback.rating %></strong></a>
+    </li>
+  <% end %>
+</div>
+
+<h2>
+  <a href="/apprenticeships/<%= @apprenticeship.id %>">
+    <%= @apprenticeship.apprentice.name %>'s Apprenticeship:
+  </a>
+  Week <%= @week %>
+</h2>
+
+<div id="week_select_box">
+  <form method="get" action="/week">
+    <label for="week_number">View:</label>
+    <select name="week_number">
+      <% @apprenticeship.weeks.each do |number, date| %>
+        <% if number == @week  %>
+          <%= "<option selected value='#{number}'>Week #{number}: #{date.strftime("%m/%d/%y")}</option>" %>
+        <% else %>
+          <%= "<option value='#{number}'>Week #{number}: #{date.strftime("%m/%d/%y")}</option>" %>
+        <% end %>
+      <% end %>
+    </select>
+    <input type="hidden" name="apprenticeship_id" value="<%= @apprenticeship.id %>">
+    <button type="submit">Go</button>
+  </form>
+</div>
+
+<div id="clear"></div>
+
+<div id="weekly_tasks">
+  <h3>Weekly Tasks</h3>
+  <p><a href="/apprenticeships/<%= @apprenticeship.id %>/weeks/<%= @week %>/tasks/new">Add new task for this week</a></p>
+  <table id="tasks_table">
+    <tr>
+      <th class="task-title-head">Title</th>
+      <th class="task-note-head">Note</th>
+      <th class="task-tag-head">Tags</th>
+      <th class="task-points-head">Points</th>
+      <th class="task-complete-head">Done?</th>
+      <th class="task-delete-head">Delete</th>
+    </tr>
+    <% @tasks.each do |task| %>
+      <tr>
+        <td>
+          <% if task.current? %>
+            <a href="/apprenticeships/<%= @apprenticeship.id %>/tasks/<%= task.id %>/edit"><%= task.title %></a>
+          <% else %>
+            <a href="/apprenticeships/<%= @apprenticeship.id %>/weeks/<%= @week %>/tasks/<%= task.id %>"><%= task.title %></a>
+          <% end %>
+        </td>
+        <td><%= task.note %></td>
+        <td class="task-tag">
+          <% task.display_tag_names.each do |tag| %>
+            <% if tag == task.display_tag_names.last %>
+              <li><%= tag %></li>
+            <% else %>
+              <li><%= tag %></li>
+            <% end %>
+          <% end %>
+        </td>
+        <td><%= task.points %></td>
+        <td>
+          <% if task.complete %>
+            &#10003;
+          <% else %>
+            <form method="post" action="/tasks/<%= task.id %>">
+              <input type="hidden" name="_method" value="put">
+              <input type="hidden" name="apprenticeship_id" value="<%= task.apprenticeship_id %>">
+              <input type="hidden" name="week" value="<%= task.week %>">
+              <input type="hidden" name="complete" value="true">
+              <%= "<button type='submit'>&#10003;</button>" if task.current? %>
+            </form>
+          <% end %>
+        </td>
+        <td>
+          <form onsubmit="return confirm('Do you really want to delete?');" method="post" action="/tasks/<%= task.id %>">
+            <input type="hidden" name="_method" value="delete">
+            <input type="hidden" name="apprenticeship_id" value="<%= task.apprenticeship_id %>">
+            <input type="hidden" name="week" value="<%= task.week %>">
+            <%= "<button type='submit'>X</button>" if task.current? %>
+          </form>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+
+<div id="clear"></div>
+
+<div id="blog_posts">
+  <h3>Blog Posts:</h3>
+  <p><a href="/blogpost/new/<%= @apprenticeship.id %>/<%= @week %>">Add Blog Post for this Week</a></p>
+  <% @apprenticeship.posts_for_week(@week).each do |post| %>
+    <li><a href="<%= post.url %>" target="_blank"><%= post.title %></a></li>
+  <% end %>
+</div>

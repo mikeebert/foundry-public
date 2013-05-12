@@ -1,0 +1,14 @@
+<p><a id="link" href="/users/new">Sign up for an account!</a></p>
+Current users:<br/>
+<table>
+  <th>Name</th>
+  <th>Email</th>
+  <th>ID</th>
+  <% @users.each do |user| %>
+    <tr>
+      <td><a href="/users/<%= user.id %>"><%= user.name %></a></td>
+      <td><%= user.email %></td>      
+      <td><%= user.id %></td>      
+    </tr>
+  <% end %>
+</table>

@@ -1,0 +1,55 @@
+<h3>Weekly Feedback</h3>
+
+<% if @errors %>
+<div id="errors">
+    <% @errors.each do |error| %>
+       <p><%= error %></p>
+    <% end %>
+</div>
+<% end %>
+
+<form method="post" action="/feedback">
+  <div id="feedback_form">
+    <p>
+    <label for="week">Feedback for Week: </label>
+    <select name="week">
+      <% @apprenticeship.weeks.each do |number, date| %>
+        <% if number == @week  %>
+          <%= "<option selected value='#{number}'>Week #{number}: #{date.strftime("%m/%d/%y")}</option>" %>
+        <% else %>
+          <%= "<option value='#{number}'>Week #{number}: #{date.strftime("%m/%d/%y")}</option>" %>
+        <% end %>
+      <% end %>
+    </select>
+    </p>
+
+    <p>
+    <strong>Rating </strong>
+    <% [1,2,3,4,5].each do |n| %>
+      <% if n == @feedback.rating %>
+        <%= "<input type='radio' name='rating' value='#{n}' checked='checked'> #{n}" %> 
+      <% else %>
+        <%= "<input type='radio' name='rating' value='#{n}'> #{n}"  %>
+      <% end %>
+    <% end %>
+    </p>
+    <p>
+      <label for="good">What Went Well: </label><br />
+      <textarea name="good" class="feedback_text" cols="55" rows="5" required><%= @feedback.good %></textarea>
+    </p>
+    <p>
+      <label for="improve">What Can Be Improved: </label><br />
+      <textarea name="improve" class="feedback_text" cols="55" rows="5" required><%= @feedback.improve %></textarea>
+    </p>
+    <p>
+      <label for="change">What To Change: </label><br />
+      <textarea name="change" class="feedback_text" cols="55" rows="5" required><%= @feedback.change %></textarea>
+    </p>
+      <input type="hidden" name="apprenticeship_id" value="<%= @apprenticeship.id %>">
+      <input type="hidden" name="author_id" value="<%= current_user.id %>">
+    <p>
+      <button type="submit">Submit Feedback</button>
+    </p>
+  </div>
+
+</form>

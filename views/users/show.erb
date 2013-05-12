@@ -1,0 +1,68 @@
+<div id="checklist_link">
+  <a href="/apprenticeships/checklist">8th Light Apprenticeship Checklist</a>
+</div>
+
+<div>
+  <a href="/apprenticeships/new">Create Apprenticeship</a>
+</div>
+
+<div id="clear"></div> 
+
+<div id="apprenticeships-overview">
+
+  <% @user.apprenticeships.each do |apprenticeship| %>
+
+    <div id="apprenticeship-header">
+      <strong>Apprentice</strong>: <%= apprenticeship.apprentice.name %>
+      <strong>Mentor</strong>: <%= apprenticeship.mentor.name %> - 
+      <a href="/apprenticeships/<%= apprenticeship.id %>"><em>View Details</em></a>
+      <span class="dates">
+        <%= apprenticeship.start_date.strftime("%B %d, %Y") %> - <%= apprenticeship.end_date.strftime("%B %d, %Y") %>
+      </span>
+    </div>
+
+    <div id="apprenticeship-details">
+      <h4>
+        <a href="/apprenticeships/<%= apprenticeship.id %>/weeks/<%= apprenticeship.current_week_number %>">Week #<%= apprenticeship.current_week_number %>: <%= apprenticeship.current_week_date.strftime("%B %d, %Y") %></a>
+      </h4>
+      <div id="tasks-overview">
+        <h4>Tasks</h4>
+        <table id="task-overview-table">
+          <tr>
+            <th class="task-title-head">Title</th>
+            <th class="task-points-head">Points</th>
+            <th class="task-complete-head">Finished?</th>
+          </tr>
+          <% apprenticeship.tasks_for_week(apprenticeship.current_week_number).each do |task| %>
+            <tr>
+              <td><%= task.title %></td>
+              <td><%= task.points %></td>
+              <td><%= "&#10003;" if task.complete %></td>
+            </tr> 
+          <% end %>
+          <%= "<tr><td><em>No tasks yet</em></td></tr>" if apprenticeship.tasks_for_week(apprenticeship.current_week_number).empty? %>
+        </table>
+      </div>
+
+      <div id="blogposts-overview">
+        <h4>Blogposts</h4>
+        <%= "<em>No posts yet.</em>" if apprenticeship.posts_for_week(apprenticeship.current_week_number).empty? %>
+        <% apprenticeship.posts_for_week(apprenticeship.current_week_number).each do |post| %>
+          <li><a href="<%= post.url %>" target="_blank"><%= post.title %></a></li>
+        <% end %>
+      </div>
+
+      <div id="clear"></div>
+
+      <div id="feedback-overview">
+        <h4>Rating</h4>
+        <%= "<em>No rating or feedback yet.</em>" if apprenticeship.feedback_for_week(apprenticeship.current_week_number).empty? %>
+        <% apprenticeship.feedback_for_week(apprenticeship.current_week_number).each do |feedback| %>
+          <li><%= feedback.author.name %>: <%= feedback.rating %></li>
+        <% end %>
+      </div>
+
+    </div>
+
+  <% end %>
+</div>

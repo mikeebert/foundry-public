@@ -1,0 +1,15 @@
+<p>New task for <%= @apprenticeship.apprentice.name %></p>
+
+<% if @errors %>
+<div id="errors">
+    <% @errors.each do |error| %>
+       <p><%= error %></p>
+    <% end %>
+</div>
+<% end %>
+
+<form method="post" action="/tasks">
+  
+  <%= erb 'tasks/_form'.to_sym %>
+
+</form>

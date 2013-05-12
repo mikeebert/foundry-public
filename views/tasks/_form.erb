@@ -1,0 +1,68 @@
+  <div id="task_form">
+    <input type="hidden" name="apprenticeship_id" value="<%= @apprenticeship.id %>">
+    
+    <p>
+      <label for="week">Week: </label>
+      <select name="week">
+        <% if @task.general == true %>
+          <option selected value="0">-general task-</option> 
+        <% else %>
+          <option value="0">-general task-</option>
+        <% end %>
+        <% @apprenticeship.weeks.each do |number, date| %>
+          <% if number == @week  %>
+            <%= "<option selected value='#{number}'>Week #{number}: #{date.strftime("%m/%d/%y")}</option>" %>
+          <% else %>
+            <%= "<option value='#{number}'>Week #{number}: #{date.strftime("%m/%d/%y")}</option>" %>
+          <% end %>
+        <% end %>
+      </select>
+    </p>
+
+    <p>
+      <label for="title">Title: </label>
+      <input type="text" name="title" size="75" value="<%= @task.title %>"/ required>
+    </p>
+    
+    <p>
+      <label for="note">Note: </label>
+      <textarea name="note" id="note" cols="55" rows="5" wrap="hard"><%= @task.note %></textarea>
+    </p>
+    
+    <p>
+      <label for="points">Points: </label>
+      <input type="number" step="0.25" min="0" max="9" name="points" id="points" size="9" value="<%= @task.points %>" />
+    </p>
+    
+    <p>
+      <label for="complete">Complete: </label>
+      <% if @task.complete? %>
+         &#10003;
+      <% else %>
+        <input type="checkbox" name="complete" value="true">
+      <% end %>
+    </p>
+
+    <p>
+      <button type="submit">Submit</button> 
+      <% if @week == 0 %>
+        <a href="/apprenticeships/<%= @apprenticeship.id %>">cancel</a>
+      <% else %>
+        <a href="/apprenticeships/<%= @apprenticeship.id %>/weeks/<%= @week %>">cancel</a>
+      <% end %>
+    </p>
+  </div>
+  
+  <div id="tag_checkboxes">
+    <h4>Tags</h4>
+    <p>
+      <% @tags.each do |tag_id,tag_name| %>
+        <% if @task.tags.include?(tag_id) %>
+          <%= "<input type='checkbox' name='tags[]' value='#{tag_id}' checked='true' />#{tag_name}" %><br />
+        <% else %>
+          <%= "<input type='checkbox' name='tags[]' value='#{tag_id}' />#{tag_name}" %><br />
+        <% end %>
+      <% end %>
+    </p>
+  </div>
+

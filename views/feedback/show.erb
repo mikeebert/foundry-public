@@ -1,0 +1,19 @@
+<h3>Feedback for <%= @apprenticeship.apprentice.name %>: <a href="/apprenticeships/<%= @apprenticeship.id %>/weeks/<%= @week %>"> Week <%= @week %></a></h3>
+
+<div id="feedback-show">
+  <% @apprenticeship.feedback_for_week(@week).each do |feedback| %>
+    <div id="feedback_details">
+      <h4><%=feedback.author.name %>'s Feedback</h4>
+      <h4>Rating: <%= feedback.rating %></h4>
+
+      <h4>Good:</h4>
+      <li><%= feedback.good %></li>
+
+      <h4>Improve:</h4>
+      <li><%= feedback.improve %></li>
+
+      <h4>Change</h4>
+      <li><%= feedback.change %></li>
+    </div>
+  <% end %>
+</div>

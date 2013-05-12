@@ -1,0 +1,15 @@
+Here is a list of all apprenticeships:
+
+<% @apprenticeships.each do |apprenticeship| %>
+  <p>
+    <strong>Apprentice</strong>: 
+      <a href="/users/<%= apprenticeship.apprentice.id %>"><%= apprenticeship.apprentice.name %></a><br />
+    <strong>Mentor</strong>: 
+      <a href="/users/<%= apprenticeship.apprentice.id %>"><%= apprenticeship.mentor.name %></a><br />
+    Start: <%= apprenticeship.start_date.strftime("%B %d, %Y") %><br />
+    End: <%= apprenticeship.end_date.strftime("%B %d, %Y") %><br />
+    <% if apprenticeship.include?(current_user) %>
+      <a href="/apprenticeships/<%= apprenticeship.id %>">View Details</a>
+    <% end %>
+  </p>
+<% end %>

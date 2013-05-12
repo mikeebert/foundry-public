@@ -1,0 +1,335 @@
+#container {
+  width: 960px;
+  margin: 0 auto;
+  padding: 0 5px;
+}
+
+#header {
+  background-color: #ddd;
+  padding: 5px;
+  margin-bottom: 8px;
+}
+
+#title {
+  width:600px;
+	padding: 10px 5px;
+  font-size: 18px;
+	font-weight: normal;
+	font-style: normal;
+}
+
+#nav {
+  width: 300px;
+  float: right;
+  text-align: right;
+	padding: 12px 2px 2px 2px;
+  margin-right: 10px;
+  font: 13px Helvetica, Geneva, sans-serif;
+}
+
+#content {	
+	padding: 10px;
+	font: 400 13px Helvetica, Geneva, sans-serif;
+  color: #222222;
+}
+
+#flash {
+  font: 16px Helvetica, Geneva, sans-serif;
+	color: red;
+}
+
+#clear {
+  clear: both;
+}
+
+a {
+  text-decoration:none;
+}
+
+/*a.button {
+ border-radius: 5px;
+ border: 1px solid #BBB;
+ padding: 4px 10px;
+ font-size: 12px;
+ text-decoration: none;
+ text-align: center ;
+ color: black;
+ background-color: #ecebeb;
+ -moz-box-shadow: 0 0 1px #e6e6e6;
+ -webkit-box-shadow: 0 0 1px #e6e6e6;
+ box-shadow: 0 0 1px #e6e6e6;
+}*/
+
+strong {
+	font-weight: bold;
+}
+
+em {
+	font-style: italic;
+}
+
+p {
+	margin: 10px 0;
+}
+
+li {
+	margin: 5px 0;
+}
+
+h2 {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 5px 0px 10px 0px;
+}
+
+h3 {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+h4 {	
+  margin: 5px 0;
+  font-size: 14px;
+  font-weight: bold;
+	color: #444444;
+}
+
+#errors {
+	color: red;
+	font-size: 12px;
+}
+
+th {
+  text-align: left;
+  padding-right: 10px;
+  padding-bottom: 5px;
+  font-weight: bold;
+}
+
+/*user show page*/
+
+#apprenticeships-overview {
+	margin-top: 10px;
+}
+
+#apprenticeship-header {
+	width: 930px;
+	background-color: #d7f1c6;
+	padding: 5px;
+}
+
+.dates {
+	padding-right: 5px;
+	font-style: italic;
+	font-size: 12px;
+	float: right;
+}
+
+.details-link {
+	float: right;
+	margin-right: 10px;
+	font-weight: bold;
+}
+
+#apprenticeship-details {
+	width: 900px;
+	padding: 5px;
+	margin-bottom: 5px;
+}
+
+#tasks-overview {
+	float: left;
+	width: 420px;
+	padding: 5px 5px 10px;
+	background-color: #c0e2fc;
+	border-radius: 5px;
+}
+
+#task-overview-table {
+	margin-left: 5px;
+}
+
+#task-overview-table td{
+	padding-right: 10px;
+	padding-top: 5px;	
+	word-break: break-all;
+}
+
+td.task-note-250px {
+	width: 250px;
+}
+
+#blogposts-overview {
+	float: right;
+	width: 420px;
+	padding: 5px 5px 10px;
+	background-color: #c0e2fc;
+	border-radius: 5px;
+}
+
+#blogposts-overview li {
+	padding-left: 5px;
+}
+
+#feedback-overview {
+	margin-top: 10px;
+}
+
+#feedback-overview li {
+	list-style-type: none;
+	padding-left: 5px;
+}
+
+
+/*Apprenticeship show page*/
+#checklist li {
+  margin-left: 10px;
+}
+
+#week_list {
+	margin: 10px 5px 0 0;
+	float: left;
+	width: 150px;
+	padding: 5px 5px 5px 10px;
+	background-color: #c0e2fc;
+	border-radius: 5px;
+}
+
+#week_list ul{
+  margin-top: 5px;
+  padding-left: 5px;
+}
+
+.past-weeks a {
+  color: #808080;
+}
+
+#general_task_list {
+	margin: 10px 0 0 10px;
+  float: left;
+  width: 650px;
+}
+
+#general_task_list table {
+  width: 600px
+  margin-top: 10px;
+}
+
+#general_task_list td {
+  padding-right: 10px;
+  padding-top: 5px;
+}
+
+#checklist_link {
+  float:right;
+}
+
+/*Apprenticehip Week View*/
+#week_select_box {
+  margin-top: 15px;
+}
+
+#weekly_tasks {
+  float: left;
+  margin-top: 10px;
+  width: 900px;
+}
+
+#tasks_table {
+  width: 875px;
+  margin: 10px 0;
+  whitespace: nowrap;
+}
+
+#tasks_table td {
+  padding-top: 5px;
+	padding-right: 10px;
+  word-break: break-all;
+}
+
+th.task-title-head {
+  width: 250px;
+}
+
+th.task-note-head {
+  width: 300px;
+}
+
+th.task-tag-head {
+	width: 150px;
+}
+
+td.task-tag {
+  font-size: 12px;
+}
+
+td.task-tag li {
+  line-height: 1em;
+  list-style-type: none;
+}
+
+th.task-points-head {
+  width: 50px;
+}
+
+th.task-complete-head {
+  width: 50px;
+}
+
+th.task-delete-head {
+  width: 50px;
+}
+
+/*Feedback Module on Week view*/
+#feedback_module {
+  float:right;
+  width: 300px;
+  padding: 5px 10px;
+  margin: 0 5px;
+  background-color: #cedded;
+  border-radius: 5px;
+}
+
+.feedback_links {
+	float: right;
+}
+
+#feedback_module li {
+	list-style-type: none;	
+}
+
+
+/*task form page for new, general and edit*/
+
+#task_form {
+  width: 550px;
+  float: left;
+}
+
+#tag_checkboxes {
+  width:200px;
+  float:left;
+}
+
+#delete_task {
+  float: right;
+}
+
+/*Feedback show page*/
+#feedback-show {
+	margin-top: 10px;
+}
+
+#feedback-show li{
+	list-style-type: none;
+	padding-left: 10px;
+}
+
+/*feedback show page */
+
+#feedback_details {
+	margin: 10px 5px;
+	padding: 5px 10px;
+	background-color: #f1f1f1;
+	border-radius: 5px;
+}

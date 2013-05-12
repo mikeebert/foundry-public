@@ -1,0 +1,25 @@
+<h3>Task: <%= @task.title %></h3>
+
+<% if @errors %>
+<div id="errors">
+    <% @errors.each do |error| %>
+       <p><%= error %></p>
+    <% end %>
+</div>
+<% end %>
+
+<form method="post" action="/tasks/<%= @task.id %>">
+  <input type="hidden" name="_method" value="put">
+
+  <%= erb 'tasks/_form'.to_sym %>
+
+</form>
+
+<div id="delete_task">
+  <form onsubmit="return confirm('Do you really want to delete?');" method="post" action="/tasks/<%= @task.id %>">
+    <input type="hidden" name="_method" value="delete">          
+    <input type="hidden" name="apprenticeship_id" value="<%= @task.apprenticeship_id %>">            
+    <input type="hidden" name="week" value="<%= @task.week %>">            
+    <button type="submit">Delete Task</button>
+  </form>
+</div>

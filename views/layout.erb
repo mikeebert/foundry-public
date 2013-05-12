@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+  <head>  
+    <meta charset='UTF-8' />
+    <title>found&middot;ry</title>
+    <link href="/stylesheets/reset.css" rel="stylesheet">
+    <link href="/stylesheets/styles.css" rel="stylesheet">
+    <script type="text/javascript" src="/javascripts/application.js"></script>
+  </head>
+  <body>
+    <div id="container">
+      <div id="header">
+        <div id="nav">
+          <% if current_user.nil? %>
+            <a href="/login">Sign-In</a>
+          <% else %>
+            Welcome, <%= current_user.name %> | 
+            <a id="link" href="/users/<%= current_user.id %>">My Page</a> |            
+            <a href="/logout">Logout</a>
+          <% end %>
+        </div>
+        <div id="title">
+          <strong>found&middot;ry (n)</strong> : a place where metal is melted and poured into molds
+        </div>
+      </div>
+
+      <div id="content">
+        <% if flash[:error] %>
+          <div id="flash"><%= flash[:error] %></div>
+        <% end %>
+        <%= yield %>
+      </div>
+    </div>
+  </body>
+</html>

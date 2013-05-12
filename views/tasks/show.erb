@@ -1,0 +1,12 @@
+<h3>Task for <%= @apprenticeship.apprentice.name %></h3>
+
+<p><strong>Week:</strong> <%= @task.week %> - <%= @apprenticeship.weeks[@task.week].strftime("%b %d, %Y") %></p>
+<p><strong>Title:</strong> <%= @task.title %></p>
+<p><strong>Points:</strong> <%= @task.points %></p>
+
+<p><strong>Note:</strong> <%= @task.note %></p>
+
+<p><strong>Tags:</strong></p>
+<% @task.display_tag_names.each do |tag| %>
+  <li><%= tag %></li>
+<% end %>
