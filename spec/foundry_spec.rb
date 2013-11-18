@@ -105,7 +105,7 @@ describe "Foundry" do
       @user.admin = true
       login_as @user
 
-      datastore = mock(MemoryDatastore::Apprenticeship)
+      datastore = double(MemoryDatastore::Apprenticeship)
       Repository.should_receive(:for).and_return(datastore)
       datastore.should_receive(:all).and_return(Array.new)
 

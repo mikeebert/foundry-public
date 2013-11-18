@@ -9,11 +9,11 @@ module MemoryDatastore
   describe MemoryRepoFactory do
     before(:each) do
       @factory = MemoryRepoFactory.new
-      @stub_store = stub 
+      @stub_store = double
     end
     
     it "should return a datasture if passed an eligible symbol" do
-      user_datastore = stub
+      user_datastore = double
       User.should_receive(:new).and_return(user_datastore)
       @factory.create(:user).should == user_datastore
     end
