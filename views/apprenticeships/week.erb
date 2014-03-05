@@ -103,7 +103,25 @@
 <div id="blog_posts">
   <h3>Blog Posts:</h3>
   <p><a href="/blogpost/new/<%= @apprenticeship.id %>/<%= @week %>">Add Blog Post for this Week</a></p>
-  <% @apprenticeship.posts_for_week(@week).each do |post| %>
-    <li><a href="<%= post.url %>" target="_blank"><%= post.title %></a></li>
-  <% end %>
+   <table id="blogposts_table">
+    <tr>
+      <th class="blogpost-title-head">Blog Post</th>
+      <th class="blogpost-delete-head">Delete</th>
+    </tr>
+    <% @apprenticeship.posts_for_week(@week).each do |post| %>
+      <tr>
+        <td>
+          <a href="<%= post.url %>" target="_blank"><%= post.title %></a>
+        </td>
+        <td>
+          <form onsubmit="return confirm('Do you really want to delete?');" method="post" action="/blogpost/<%= post.id %>">
+            <input type="hidden" name="_method" value="delete">
+            <input type="hidden" name="apprenticeship_id" value="<%= post.apprenticeship_id %>">
+            <input type="hidden" name="week" value="<%= post.week %>">
+            <%= "<button type='submit'>X</button>" %>
+          </form>
+        </td>
+      </tr>
+    <% end %>
+  </table>
 </div>
