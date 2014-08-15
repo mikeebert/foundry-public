@@ -10,13 +10,13 @@ describe "Weeks model" do
   end
 
   it "should return a hash of weeks for an apprenticeship lasting 8 days" do
-    Date.should_receive(:today).any_number_of_times.and_return(Date.new(2012,8,31))
+    Date.stub(:today).and_return(Date.new(2012,8,31))
     Weeks.apprenticeship_weeks(Date.today, (Date.today + 8)).should == {1 => Date.today,
                                                                         2 => (next_monday)}
   end
 
   it "should return a hash of weeks for an apprenticeship spanning three weeks" do
-    Date.should_receive(:today).any_number_of_times.and_return(Date.new(2012,8,31))
+    Date.stub(:today).and_return(Date.new(2012,8,31))
     Weeks.apprenticeship_weeks(Date.today, (Date.today + 15)).should == {1 => Date.today, 
                                                                         2 => next_monday,
                                                                         3 => (next_monday + 7)}

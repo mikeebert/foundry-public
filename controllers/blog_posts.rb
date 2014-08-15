@@ -20,4 +20,14 @@ class Foundry < Sinatra::Application
     end
   end
 
+  delete "/blogpost/:id" do
+    post = Repository.for(:blogpost).find_by_id(params[:id])
+    Repository.for(:blogpost).delete(post)
+
+    if params[:week].to_i == 0
+      redirect "/apprenticeships/#{params[:apprenticeship_id]}"
+    else
+      redirect "/apprenticeships/#{params[:apprenticeship_id]}/weeks/#{params[:week]}"
+    end
+  end
 end

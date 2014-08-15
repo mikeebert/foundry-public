@@ -99,7 +99,7 @@ shared_examples "apprenticeship model" do
     it "should return the current week number if today is a Monday" do
       apprenticeship = @apprenticeship.class.new(:start_date => Date.new(2012,8,26),
                                                  :end_date => Date.new(2012,9,7))
-      Date.should_receive(:today).any_number_of_times.and_return(Date.new(2012,8,27))
+      Date.stub(:today).and_return(Date.new(2012,8,27))
       apprenticeship.current_week_number.should == 2
     end
 
@@ -107,7 +107,7 @@ shared_examples "apprenticeship model" do
       before(:each) do
         @apprenticeship = @apprenticeship.class.new(:start_date => Date.new(2012,8,1),
                                                    :end_date => Date.new(2012,9,1))
-        Date.should_receive(:today).any_number_of_times.and_return(Date.new(2012,8,14))
+        Date.stub(:today).and_return(Date.new(2012,8,14))
       end
 
       it "should return the current and future weeks" do
